@@ -1,5 +1,5 @@
 // Import necessary packages for defining custom animations and detecting widget visibility.
-import 'package:animate_ease/components/animation_type.dart';
+import 'package:animate_ease/hitek/animation_type.dart';
 import 'package:flutter/widgets.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 

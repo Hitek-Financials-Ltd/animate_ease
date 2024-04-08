@@ -1,13 +1,10 @@
 // This file defines the AnimateEase library which provides widget animation capabilities in Flutter apps.
 
 library animate_ease;
-
-export 'package:animate_ease/components/animation_type.dart';
-
 // Import statements to include Flutter material design widgets and custom components for animation.
-import 'package:animate_ease/components/animate_x.dart';
-import 'package:animate_ease/components/animation_type.dart';
-import 'package:animate_ease/components/visibility_detect.dart';
+import 'package:animate_ease/hitek/animate_x.dart';
+import 'package:animate_ease/hitek/animation_type.dart';
+import 'package:animate_ease/hitek/visibility_detect.dart';
 import 'package:flutter/material.dart';
 
 /// The AnimateEase StatefulWidget allows for easy implementation of animations with various configurations.

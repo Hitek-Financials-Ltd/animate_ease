@@ -1,5 +1,5 @@
 // Import necessary packages and files for the animation functionality.
-import 'package:animate_ease/components/animation_type.dart';
+import 'package:animate_ease/hitek/animation_type.dart';
 import 'package:flutter/material.dart';
 
 /// The AnimateX class provides a static method to setup animations based on different types.
