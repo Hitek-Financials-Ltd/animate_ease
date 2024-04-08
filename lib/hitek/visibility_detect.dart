@@ -20,10 +20,10 @@ class VisibilityDetect {
   /// - Returns: A VisibilityDetector widget that wraps the input widget and applies the specified animation when the widget becomes visible.
   static visib(
     dynamic widget,
-    Animation<double>? animation,
-    AnimationController? controller,
+    Animation<double> animation,
+    AnimationController controller,
     int completedCycles,
-    AnimationType? animationType,
+    AnimationType animationType,
   ) {
     return VisibilityDetector(
       key: Key('AnimateEase_${widget.animate.toString()}'), // Unique key for the detector based on the animation type.
@@ -41,99 +41,99 @@ class VisibilityDetect {
         }
       },
       child: AnimatedBuilder(
-        animation: controller!, // The animation controller that drives the animation.
+        animation: controller, // The animation controller that drives the animation.
         builder: (context, child) {
           switch (animationType) { // Switch on the type of animation to apply different transformations.
             case AnimationType.fadeIn:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: widget.child,
               );
 
             case AnimationType.fadeOut:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: widget.child,
               );
             case AnimationType.rotate:
               return Transform.rotate(
-                angle: animation!.value * 2 * 3.141592653589793,
+                angle: animation.value * 2 * 3.141592653589793,
                 child: widget.child,
               );
             case AnimationType.scaleUp:
               return Transform.scale(
-                scale: 1.0 - animation!.value,
+                scale: 1.0 - animation.value,
                 child: widget.child,
               );
             case AnimationType.scaleDown:
               return Transform.scale(
-                scale: animation!.value,
+                scale: animation.value,
                 child: widget.child,
               );
             case AnimationType.slideInRight:
               return Transform.translate(
                 offset: Offset(
-                    animation!.value * MediaQuery.of(context).size.width, 0.0),
+                    animation.value * MediaQuery.of(context).size.width, 0.0),
                 child: widget.child,
               );
 
             case AnimationType.slideOutLeft:
               return Transform.translate(
                 offset: Offset(
-                    -animation!.value * MediaQuery.of(context).size.width, 0.0),
+                    -animation.value * MediaQuery.of(context).size.width, 0.0),
                 child: widget.child,
               );
 
             case AnimationType.slideInBottom:
               return Transform.translate(
                 offset: Offset(
-                    0.0, animation!.value * MediaQuery.of(context).size.height),
+                    0.0, animation.value * MediaQuery.of(context).size.height),
                 child: widget.child,
               );
             case AnimationType.slideOutTop:
               return Transform.translate(
                 offset: Offset(0.0,
-                    -animation!.value * MediaQuery.of(context).size.height),
+                    -animation.value * MediaQuery.of(context).size.height),
                 child: widget.child,
               );
             case AnimationType.slideInTop:
               return Transform.translate(
                 offset: Offset(
-                    0.0, animation!.value * MediaQuery.of(context).size.height),
+                    0.0, animation.value * MediaQuery.of(context).size.height),
                 child: widget.child,
               );
             case AnimationType.slideOutRight:
               return Transform.translate(
                 offset: Offset(
-                    animation!.value * MediaQuery.of(context).size.width, 0.0),
+                    animation.value * MediaQuery.of(context).size.width, 0.0),
                 child: widget.child,
               );
             case AnimationType.slideInLeft:
               return Transform.translate(
                 offset: Offset(
-                    -animation!.value * MediaQuery.of(context).size.width, 0.0),
+                    -animation.value * MediaQuery.of(context).size.width, 0.0),
                 child: widget.child,
               );
 
             case AnimationType.slideOutBottom:
               return Transform.translate(
                 offset: Offset(0.0,
-                    -animation!.value * MediaQuery.of(context).size.height),
+                    -animation.value * MediaQuery.of(context).size.height),
                 child: widget.child,
               );
             case AnimationType.rotateIn:
               return Transform.rotate(
-                angle: animation!.value * (3.141592653589793 / 2),
+                angle: animation.value * (3.141592653589793 / 2),
                 child: widget.child,
               );
             case AnimationType.rotateOut:
               return Transform.rotate(
-                angle: -animation!.value * (3.141592653589793 / 2),
+                angle: -animation.value * (3.141592653589793 / 2),
                 child: widget.child,
               );
             case AnimationType.opacityInLeft:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(
                       -(animation.value * MediaQuery.of(context).size.width),
@@ -143,7 +143,7 @@ class VisibilityDetect {
               );
             case AnimationType.opacityInRight:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(
                       animation.value * MediaQuery.of(context).size.width, 0.0),
@@ -152,7 +152,7 @@ class VisibilityDetect {
               );
             case AnimationType.opacityInUp:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(0.0,
                       -(animation.value * MediaQuery.of(context).size.height)),
@@ -161,7 +161,7 @@ class VisibilityDetect {
               );
             case AnimationType.opacityInDown:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(0.0,
                       animation.value * MediaQuery.of(context).size.height),
@@ -171,20 +171,20 @@ class VisibilityDetect {
             case AnimationType.translateInLeft:
               return Transform.translate(
                 offset: Offset(
-                    -(animation!.value * MediaQuery.of(context).size.width),
+                    -(animation.value * MediaQuery.of(context).size.width),
                     0.0),
                 child: widget.child,
               );
             case AnimationType.translateInRight:
               return Transform.translate(
                 offset: Offset(
-                    animation!.value * MediaQuery.of(context).size.width, 0.0),
+                    animation.value * MediaQuery.of(context).size.width, 0.0),
                 child: widget.child,
               );
             case AnimationType.translateInUp:
               return Transform.translate(
                 offset: Offset(0.0,
-                    -(animation!.value * MediaQuery.of(context).size.height)),
+                    -(animation.value * MediaQuery.of(context).size.height)),
                 child: widget.child,
               );
             case AnimationType.translateInDown:
@@ -192,11 +192,11 @@ class VisibilityDetect {
                 offset: Offset(
                   animationType == AnimationType.translateInLeft ||
                           animationType == AnimationType.translateInRight
-                      ? animation!.value * MediaQuery.of(context).size.width
+                      ? animation.value * MediaQuery.of(context).size.width
                       : 0.0,
                   animationType == AnimationType.translateInUp ||
                           animationType == AnimationType.translateInDown
-                      ? animation!.value * MediaQuery.of(context).size.height
+                      ? animation.value * MediaQuery.of(context).size.height
                       : 0.0,
                 ),
                 child: widget.child,
@@ -204,24 +204,24 @@ class VisibilityDetect {
             case AnimationType.scatteredIn:
               return Transform(
                 transform: Matrix4.diagonal3Values(
-                    animation!.value, animation.value, 1.0),
+                    animation.value, animation.value, 1.0),
                 child: widget.child,
               );
             case AnimationType.particles:
               return Transform(
                 transform: Matrix4.translationValues(
-                    animation!.value * 10, animation.value * 10, 0.0),
+                    animation.value * 10, animation.value * 10, 0.0),
                 child: widget.child,
               );
             case AnimationType.rainFall:
               return Transform.translate(
                 offset: Offset(
-                    0.0, animation!.value * MediaQuery.of(context).size.height),
+                    0.0, animation.value * MediaQuery.of(context).size.height),
                 child: widget.child,
               );
             case AnimationType.rollInLeft:
               return Transform.rotate(
-                angle: animation!.value * (3.141592653589793 / 2),
+                angle: animation.value * (3.141592653589793 / 2),
                 child: Transform.translate(
                   offset: Offset(
                       -(animation.value * MediaQuery.of(context).size.width),
@@ -231,7 +231,7 @@ class VisibilityDetect {
               );
             case AnimationType.rollInRight:
               return Transform.rotate(
-                angle: animation!.value * (-3.141592653589793 / 2),
+                angle: animation.value * (-3.141592653589793 / 2),
                 child: Transform.translate(
                   offset: Offset(
                       animation.value * MediaQuery.of(context).size.width, 0.0),
@@ -240,7 +240,7 @@ class VisibilityDetect {
               );
             case AnimationType.rollInUp:
               return Transform.rotate(
-                angle: animation!.value * (-3.141592653589793 / 2),
+                angle: animation.value * (-3.141592653589793 / 2),
                 child: Transform.translate(
                   offset: Offset(0.0,
                       -(animation.value * MediaQuery.of(context).size.height)),
@@ -249,7 +249,7 @@ class VisibilityDetect {
               );
             case AnimationType.rollInDown:
               return Transform.rotate(
-                angle: animation!.value * (3.141592653589793 / 2),
+                angle: animation.value * (3.141592653589793 / 2),
                 child: Transform.translate(
                   offset: Offset(0.0,
                       animation.value * MediaQuery.of(context).size.height),
@@ -258,32 +258,32 @@ class VisibilityDetect {
               );
             case AnimationType.bounceIn:
               return Transform.scale(
-                scale: 1 - animation!.value.abs(),
+                scale: 1 - animation.value.abs(),
                 child: widget.child,
               );
 
             case AnimationType.bounceOut:
               return Transform.scale(
-                scale: animation!.value,
+                scale: animation.value,
                 child: widget.child,
               );
 
             case AnimationType.elasticIn:
               return Transform.scale(
-                scale: 1 - animation!.value,
+                scale: 1 - animation.value,
                 child: widget.child,
               );
 
             case AnimationType.elasticOut:
               return Transform.scale(
-                scale: animation!.value,
+                scale: animation.value,
                 child: widget.child,
               );
 
             case AnimationType.jitter:
               return Transform(
                 transform: Matrix4.translationValues(
-                  animation!.value * 5,
+                  animation.value * 5,
                   animation.value * 5,
                   0.0,
                 ),
@@ -293,33 +293,33 @@ class VisibilityDetect {
             case AnimationType.wiggle:
               return Transform(
                 transform: Matrix4.rotationZ(
-                  animation!.value * 0.1,
+                  animation.value * 0.1,
                 ),
                 child: widget.child,
               );
 
             case AnimationType.pulse:
               return Transform.scale(
-                scale: 1 - (animation!.value * 0.2),
+                scale: 1 - (animation.value * 0.2),
                 child: widget.child,
               );
 
             case AnimationType.expand:
               return Transform.scale(
-                scale: animation!.value,
+                scale: animation.value,
                 child: widget.child,
               );
 
             case AnimationType.collapse:
               return Transform.scale(
-                scale: 1 - animation!.value,
+                scale: 1 - animation.value,
                 child: widget.child,
               );
 
             case AnimationType.shake:
               return Transform(
                 transform: Matrix4.translationValues(
-                  animation!.value * 10,
+                  animation.value * 10,
                   0.0,
                   0.0,
                 ),
@@ -328,20 +328,20 @@ class VisibilityDetect {
 
             case AnimationType.swing:
               return Transform.rotate(
-                angle: animation!.value * 0.2,
+                angle: animation.value * 0.2,
                 child: widget.child,
               );
 
             case AnimationType.tada:
               return Transform.scale(
-                scale: 1 + animation!.value * 0.1,
+                scale: 1 + animation.value * 0.1,
                 child: widget.child,
               );
 
             case AnimationType.wobble:
               return Transform(
                 transform: Matrix4.rotationZ(
-                  animation!.value * 0.2,
+                  animation.value * 0.2,
                 ),
                 child: widget.child,
               );
@@ -349,38 +349,38 @@ class VisibilityDetect {
             case AnimationType.jello:
               return Transform(
                 transform: Matrix4.skewX(
-                  animation!.value * 0.2,
+                  animation.value * 0.2,
                 ),
                 child: widget.child,
               );
 
             case AnimationType.heartBeat:
               return Transform.scale(
-                scale: 1 - animation!.value.abs() * 0.2,
+                scale: 1 - animation.value.abs() * 0.2,
                 child: widget.child,
               );
 
             case AnimationType.flash:
               return Opacity(
-                opacity: animation!.value < 0.5 ? 1.0 : 0.0,
+                opacity: animation.value < 0.5 ? 1.0 : 0.0,
                 child: widget.child,
               );
 
             case AnimationType.rubberBand:
               return Transform.scale(
-                scale: 1 - animation!.value.abs() * 0.3,
+                scale: 1 - animation.value.abs() * 0.3,
                 child: widget.child,
               );
 
             case AnimationType.headShake:
               return Transform.rotate(
-                angle: animation!.value * 0.2,
+                angle: animation.value * 0.2,
                 child: widget.child,
               );
 
             case AnimationType.squeeze:
               return Transform.scale(
-                scale: animation!.value < 0.5
+                scale: animation.value < 0.5
                     ? 1 - animation.value
                     : animation.value,
                 child: widget.child,
@@ -388,7 +388,7 @@ class VisibilityDetect {
             case AnimationType.flipX:
               return Transform(
                 transform: Matrix4.rotationY(
-                  animation!.value * 3.141592653589793,
+                  animation.value * 3.141592653589793,
                 ),
                 alignment: Alignment.center,
                 child: widget.child,
@@ -397,7 +397,7 @@ class VisibilityDetect {
             case AnimationType.flipY:
               return Transform(
                 transform: Matrix4.rotationX(
-                  animation!.value * 3.141592653589793,
+                  animation.value * 3.141592653589793,
                 ),
                 alignment: Alignment.center,
                 child: widget.child,
@@ -405,19 +405,19 @@ class VisibilityDetect {
 
             case AnimationType.zoomIn:
               return Transform.scale(
-                scale: animation!.value,
+                scale: animation.value,
                 child: widget.child,
               );
 
             case AnimationType.zoomOut:
               return Transform.scale(
-                scale: 1 - animation!.value,
+                scale: 1 - animation.value,
                 child: widget.child,
               );
 
             case AnimationType.slideInLeftFade:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(
                     -animation.value * MediaQuery.of(context).size.width,
@@ -429,7 +429,7 @@ class VisibilityDetect {
 
             case AnimationType.slideInRightFade:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(
                     animation.value * MediaQuery.of(context).size.width,
@@ -441,7 +441,7 @@ class VisibilityDetect {
 
             case AnimationType.slideInTopFade:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(
                     0.0,
@@ -453,7 +453,7 @@ class VisibilityDetect {
 
             case AnimationType.slideInBottomFade:
               return Opacity(
-                opacity: animation!.value,
+                opacity: animation.value,
                 child: Transform.translate(
                   offset: Offset(
                     0.0,

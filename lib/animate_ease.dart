@@ -46,9 +46,8 @@ class _AnimateEaseState extends State<AnimateEase>
   @override
   void initState() {
     super.initState();
-    _animationType = widget.animate; // Initialize animation type from widget properties.
-    WidgetsBinding.instance.addObserver(this); // Add this class as an observer to lifecycle events.
-
+     _animationType = widget.animate; // Initialize animation type from widget properties.
+     WidgetsBinding.instance.addObserver(this); // Add this class as an observer to lifecycle events.
     // Initialize the animation controller with the duration and vsync provider.
     _controller = AnimationController(duration: widget.duration, vsync: this)
       ..addStatusListener((status) {
@@ -74,8 +73,13 @@ class _AnimateEaseState extends State<AnimateEase>
         }
       });
 
+     // Initialize your _animation variable here before using it in AnimateX.setup.
+    // This is just an example. Adjust according to your actual animation needs.
+   _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller!);
+
+
     // Call setup to initialize the animation based on the type and controller.
-    AnimateX.setup(_animation, _controller, _animationType);
+    AnimateX.setup(_animation!, _controller!, _animationType);
   }
 
   @override
@@ -91,8 +95,8 @@ class _AnimateEaseState extends State<AnimateEase>
     // Builds the widget tree, incorporating visibility detection and animation.
     return VisibilityDetect.visib(
       widget, 
-      _animation, 
-      _controller, 
+      _animation!, 
+      _controller!, 
       _completedCycles, 
       _animationType,
     );
