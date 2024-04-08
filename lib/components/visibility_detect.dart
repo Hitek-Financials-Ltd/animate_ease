@@ -26,7 +26,7 @@ class VisibilityDetect {
     AnimationType? animationType,
   ) {
     return VisibilityDetector(
-      key: Key('KSwagger_${widget.animate.toString()}'), // Unique key for the detector based on the animation type.
+      key: Key('AnimateEase_${widget.animate.toString()}'), // Unique key for the detector based on the animation type.
       onVisibilityChanged: (visibilityInfo) {
         var visiblePercentage = visibilityInfo.visibleFraction * 100; // Calculate the percentage of the widget that is visible.
         if (visiblePercentage > 0) { // If any part of the widget is visible,

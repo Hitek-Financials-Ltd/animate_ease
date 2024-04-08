@@ -2,6 +2,8 @@
 
 library animate_ease;
 
+export 'package:animate_ease/components/animation_type.dart';
+
 // Import statements to include Flutter material design widgets and custom components for animation.
 import 'package:animate_ease/components/animate_x.dart';
 import 'package:animate_ease/components/animation_type.dart';
@@ -43,7 +45,7 @@ class _AnimateEaseState extends State<AnimateEase>
   int _animationCycleCount = 0; // Tracks the number of completed animation cycles.
   late AnimationType _animationType; // Stores the type of animation to play.
   final int _completedCycles = 0; // Counts the completed cycles, currently unused.
-  
+
   @override
   void initState() {
     super.initState();
