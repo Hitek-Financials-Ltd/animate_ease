@@ -75,7 +75,7 @@ class _AnimateEaseState extends State<AnimateEase>
 
      // Initialize your _animation variable here before using it in AnimateX.setup.
     // This is just an example. Adjust according to your actual animation needs.
-   _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller!);
+   _animation = Tween<double>(begin: -1.0, end: 0.0).animate(_controller!);
 
 
     // Call setup to initialize the animation based on the type and controller.
