@@ -26,24 +26,33 @@ class VisibilityDetect {
     AnimationType animationType,
   ) {
     return VisibilityDetector(
-      key: Key('AnimateEase_${widget.animate.toString()}'), // Unique key for the detector based on the animation type.
+      key: Key('AnimateEase_${widget.animate.toString()}'),
       onVisibilityChanged: (visibilityInfo) {
-        var visiblePercentage = visibilityInfo.visibleFraction * 100; // Calculate the percentage of the widget that is visible.
-        if (visiblePercentage > 0) { // If any part of the widget is visible,
-          if (!controller.isAnimating && // and the animation is not currently running,
-              (controller.status != AnimationStatus.completed || // and the animation hasn't completed or needs to repeat,
-                  widget.atRestAnimate)) {
-            // If animationCount is not set or completedCycles is less than the animationCount, start the animation.
-            if (widget.animationCount == null || completedCycles < widget.animationCount!) {
-              Future.delayed(widget.delay, () => controller.forward(from: 0.0)); // Start the animation after the specified delay.
-            }
+        var visiblePercentage = visibilityInfo.visibleFraction * 100;
+        if (visiblePercentage > 0) {
+          // Widget becomes visible
+          if (widget.animationCount == null ||
+              completedCycles < widget.animationCount!) {
+            // Reset the controller to ensure the animation starts from the beginning
+            controller.reset();
+            // Start the animation
+            Future.delayed(widget.delay, () => controller.forward());
           }
+        } else {
+          // Widget becomes invisible
+          // Optionally reset or perform other actions when the widget is not visible
+          // Note: This could be controller.stop() if you want to stop the animation
+          // or controller.reset() to reset the animation to its start state.
+          // Resetting the animation each time might not be necessary if you're simply looking to restart it when visible.
+          controller.reset();
         }
       },
       child: AnimatedBuilder(
-        animation: controller, // The animation controller that drives the animation.
+        animation:
+            controller, // The animation controller that drives the animation.
         builder: (context, child) {
-          switch (animationType) { // Switch on the type of animation to apply different transformations.
+          switch (animationType) {
+            // Switch on the type of animation to apply different transformations.
             case AnimationType.fadeIn:
               return Opacity(
                 opacity: animation.value,
@@ -92,8 +101,8 @@ class VisibilityDetect {
               );
             case AnimationType.slideOutTop:
               return Transform.translate(
-                offset: Offset(0.0,
-                    -animation.value * MediaQuery.of(context).size.height),
+                offset: Offset(
+                    0.0, -animation.value * MediaQuery.of(context).size.height),
                 child: widget.child,
               );
             case AnimationType.slideInTop:
@@ -117,8 +126,8 @@ class VisibilityDetect {
 
             case AnimationType.slideOutBottom:
               return Transform.translate(
-                offset: Offset(0.0,
-                    -animation.value * MediaQuery.of(context).size.height),
+                offset: Offset(
+                    0.0, -animation.value * MediaQuery.of(context).size.height),
                 child: widget.child,
               );
             case AnimationType.rotateIn:
