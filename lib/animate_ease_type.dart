@@ -1,5 +1,5 @@
 // The AnimationType enum is placed here or in a separate file for cleanliness
-enum AnimationType {
+enum AnimateEaseType {
   fadeIn,
   fadeOut,
   slideInLeft,
