@@ -32,6 +32,7 @@ class _AnimateEaseState extends State<AnimateEase>
   Animation<double>? _animation;
   int _animationCycleCount = 0;
   late AnimateEaseType _animationType;
+  bool _hasAnimated = false;
 
   @override
   void initState() {
@@ -347,25 +348,19 @@ class _AnimateEaseState extends State<AnimateEase>
       key: Key(
           'AnimateEase_${widget.animate.toString()}_${UniqueKey().toString()}'), // Ensure a unique key for each instance
       onVisibilityChanged: (visibilityInfo) {
-        var visiblePercentage = visibilityInfo.visibleFraction * 100;
-        if (visiblePercentage > 0) {
-          if (!_controller!.isAnimating &&
-              (_controller!.status != AnimationStatus.completed ||
-                  widget.atRestAnimate)) {
-            // If the widget becomes visible and the animation is not currently running or
-            // has completed but atRestAnimate is true, start or restart the animation
-            if (widget.animationCount == null ||
-                _animationCycleCount < widget.animationCount!) {
-              // If animationCount is not set or has not been reached, delay the animation start if needed
-              Future.delayed(widget.delay, () {
-                if (!_controller!.isAnimating) {
-                  _controller!.forward(from: 0.0);
-                }
-              });
-            }
-          }
+  var visiblePercentage = visibilityInfo.visibleFraction * 100;
+  if (visiblePercentage > 0 && !_controller!.isAnimating) {
+    // Assuming you add a boolean _hasAnimated to your class to track if animation happened at least once
+  if (!_hasAnimated || (widget.atRestAnimate && (_animationCycleCount < (widget.animationCount ?? 1)))) {
+      Future.delayed(widget.delay, () {
+        if (!_controller!.isAnimating && mounted) { // Check if widget is still in the tree
+          _controller!.forward(from: 0.0);
+          _hasAnimated = true; // Mark as animated
         }
-      },
+      });
+    }
+  }
+},
       child: animateEaseFlow(),
     );
   }
